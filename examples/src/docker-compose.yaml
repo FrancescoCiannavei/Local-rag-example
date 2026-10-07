@@ -41,10 +41,12 @@ services:
     environment:
       - OLLAMA_HOST=http://ollama:11434
     entrypoint: /bin/sh
+    # We might need to use a smaller version of embedding gemma, we have 270m, 440m, 570m, 740m.
+    # 740m is probably overkill for such a simple example
     command: >
       -c "
-      ollama pull gemma3:270m &&
-      ollama pull nomic-embed-text:latest &&
+      ollama pull gemma4:e2b &&
+      ollama pull embeddinggemma-2:740m &&
       echo 'Models downloaded successfully'
       "
     logging:
